@@ -26,10 +26,8 @@
             100% { background-position: 200% 50%; }
         }
 
-        /* Запрет системного масштабирования текста */
         html { -webkit-text-size-adjust: 100%; }
 
-        /* Глобальный запрет горизонтального скролла */
         html, body {
             overflow-x: hidden;
             width: 100%;
@@ -49,7 +47,6 @@
             box-sizing: border-box;
         }
 
-        /* Фиксированная шапка */
         header {
             position: relative;
             flex-shrink: 0;
@@ -108,9 +105,7 @@
             transition: opacity 0.2s ease-out;
             pointer-events: none;
         }
-        .stat-item:active::before {
-            opacity: 1;
-        }
+        .stat-item:active::before { opacity: 1; }
 
         .stat-item b {
             display: block;
@@ -137,8 +132,57 @@
             padding: 10px 12px;
             color: white;
             font-size: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             box-sizing: border-box;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn-sm {
+            flex: 1;
+            padding: 9px 10px;
+            border-radius: 11px;
+            border: none;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .btn-import {
+            background: var(--grad-green);
+            background-size: 220% 220%;
+            color: #021108;
+            box-shadow: 0 6px 18px rgba(48,209,88,0.45);
+        }
+        .btn-reset {
+            background: linear-gradient(135deg,#2c2c2e,#111111);
+            color: #ff7670;
+            border: 1px solid rgba(255,69,58,0.55);
+        }
+        .btn-new {
+            background: var(--grad-gold);
+            background-size: 220% 220%;
+            color: #140a02;
+            box-shadow: 0 6px 18px rgba(255,159,10,0.4);
+        }
+        .btn-import:active,
+        .btn-reset:active,
+        .btn-new:active {
+            transform: translateY(1px) scale(0.97);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.9);
         }
 
         .nav-tabs {
@@ -180,7 +224,6 @@
             color: #e5ffe9;
         }
 
-        /* Зона списка */
         .scroll-area {
             flex-grow: 1;
             overflow-y: auto;
@@ -207,7 +250,7 @@
             transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, filter 0.16s;
         }
         .card.urgent { border-left-color: var(--danger); }
-        .card.soon { border-left-color: var(--warning); }
+        .card.soon   { border-left-color: var(--warning); }
 
         .card:active {
             transform: scale(0.985) translateY(1px);
@@ -265,7 +308,6 @@
             word-break: break-word;
         }
 
-        /* Основные зелёные кнопки */
         .btn-done {
             width: 100%;
             padding: 13px;
@@ -294,55 +336,113 @@
             background-position: 100% 0;
         }
 
-        .action-bar {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .btn-sm {
-            flex: 1;
-            padding: 9px 10px;
-            border-radius: 11px;
-            border: none;
-            font-size: 11px;
-            font-weight: 700;
-            flex-shrink: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            box-sizing: border-box;
-            display: flex;
+        /* Модалка редактирования */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.72);
+            backdrop-filter: blur(14px);
+            display: none;
             align-items: center;
             justify-content: center;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
+            z-index: 50;
+        }
+        .modal {
+            width: 92%;
+            max-width: 420px;
+            max-height: 80vh;
+            background:
+                radial-gradient(circle at top,rgba(255,159,10,0.16),transparent 60%),
+                #18181b;
+            border-radius: 20px;
+            padding: 18px 16px 16px;
+            box-sizing: border-box;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .modal-title {
+            font-weight: 800;
+            font-size: 16px;
+            background: var(--grad-gold);
+            background-size: 220% 220%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 2.4s linear infinite;
+        }
+        .modal-close {
+            border: none;
+            background: transparent;
+            color: #aaa;
+            font-size: 22px;
+            line-height: 1;
         }
 
-        .btn-import {
+        .modal-body {
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .field-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        .field-input {
+            width: 100%;
+            padding: 9px 10px;
+            border-radius: 10px;
+            border: 1px solid #3a3a3c;
+            background: #1d1d20;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-bottom: 8px;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .btn-save {
+            flex: 1;
+            border: none;
+            border-radius: 12px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 800;
             background: var(--grad-green);
             background-size: 220% 220%;
             color: #021108;
-            box-shadow: 0 6px 18px rgba(48,209,88,0.45);
+            box-shadow: 0 7px 20px rgba(48,209,88,0.55);
         }
-        .btn-reset {
-            background:
-                linear-gradient(135deg,#2c2c2e,#111111);
-            color: #ff7670;
-            border: 1px solid rgba(255,69,58,0.55);
+        .btn-cancel {
+            flex: 1;
+            border: none;
+            border-radius: 12px;
+            padding: 11px;
+            font-size: 13px;
+            font-weight: 700;
+            background: #27272a;
+            color: #f2f2f2;
         }
-        .btn-import:active,
-        .btn-reset:active {
+        .btn-save:active,
+        .btn-cancel:active {
             transform: translateY(1px) scale(0.97);
             box-shadow: 0 3px 10px rgba(0,0,0,0.9);
         }
 
-        /* Нижняя панель безопасной области iOS */
         @supports(padding-bottom: env(safe-area-inset-bottom)) {
-            body {
-                padding-bottom: env(safe-area-inset-bottom);
-            }
+            body { padding-bottom: env(safe-area-inset-bottom); }
         }
     </style>
 </head>
@@ -361,8 +461,9 @@
     <input type="text" id="search" class="search-box" placeholder="Поиск по S/N или названию...">
 
     <div class="action-bar">
+        <button class="btn-sm btn-new" id="btnNew">НОВАЯ</button>
         <label class="btn-sm btn-import">
-            ИМПОРТ CSV
+            ИМПОРТ
             <input type="file" id="file" style="display:none" accept=".csv">
         </label>
         <button class="btn-sm btn-reset" onclick="resetDB()">СБРОС</button>
@@ -378,9 +479,49 @@
 
 <div class="scroll-area" id="listView"></div>
 
+<!-- Модалка редактирования/добавления -->
+<div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+        <div class="modal-header">
+            <div class="modal-title" id="modalTitle">Редактировать</div>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="field-label">ID</div>
+            <input type="text" id="fieldId" class="field-input" readonly>
+
+            <div class="field-label">Название</div>
+            <input type="text" id="fieldName" class="field-input" placeholder="Название объекта">
+
+            <div class="field-label">Место установки</div>
+            <input type="text" id="fieldPlace" class="field-input" placeholder="Цех / месторождение">
+
+            <div class="field-label">S/N</div>
+            <input type="text" id="fieldSn" class="field-input" placeholder="Серийный номер">
+
+            <div class="field-label">Плановая дата (ДД.ММ.ГГ)</div>
+            <input type="text" id="fieldDate" class="field-input" placeholder="Например 15.01.25">
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancel" id="btnCancel">Отмена</button>
+            <button class="btn-save" id="btnSave">Сохранить</button>
+        </div>
+    </div>
+</div>
+
 <script>
     let db = JSON.parse(localStorage.getItem('sib_v4')) || [];
     let filter = 'active';
+    let editIndex = -1; // -1 = создаём новую
+
+    const backdrop = document.getElementById('modalBackdrop');
+    const modalTitleEl = document.getElementById('modalTitle');
+
+    const fieldId    = document.getElementById('fieldId');
+    const fieldName  = document.getElementById('fieldName');
+    const fieldPlace = document.getElementById('fieldPlace');
+    const fieldSn    = document.getElementById('fieldSn');
+    const fieldDate  = document.getElementById('fieldDate');
 
     document.getElementById('file').onchange = (e) => {
         const file = e.target.files[0];
@@ -412,6 +553,11 @@
             p[0]
         ).getTime();
     }
+    function formatDate(ts) {
+        if(!ts) return '';
+        const d = new Date(ts);
+        return d.toLocaleDateString('ru-RU').slice(0,8);
+    }
 
     function save() {
         localStorage.setItem('sib_v4', JSON.stringify(db));
@@ -421,6 +567,72 @@
         filter = t;
         document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
         el.classList.add('active');
+        render();
+    }
+
+    function openModalNew() {
+        editIndex = -1;
+        modalTitleEl.textContent = 'Новая карточка';
+        const nextId = db.length ? (Math.max(...db.map(x => parseInt(x.id) || 0)) + 1) : 1;
+        fieldId.value    = nextId;
+        fieldName.value  = '';
+        fieldPlace.value = '';
+        fieldSn.value    = '';
+        fieldDate.value  = '';
+        backdrop.style.display = 'flex';
+        fieldName.focus();
+    }
+
+    function openModalEdit(idx) {
+        editIndex = idx;
+        const it = db[idx];
+        modalTitleEl.textContent = 'Редактирование';
+        fieldId.value    = it.id || '';
+        fieldName.value  = it.name || '';
+        fieldPlace.value = it.place || '';
+        fieldSn.value    = it.sn || '';
+        fieldDate.value  = it.dateStr || '';
+        backdrop.style.display = 'flex';
+        fieldName.focus();
+    }
+
+    function closeModal() {
+        backdrop.style.display = 'none';
+        editIndex = -1;
+    }
+
+    function saveFromModal() {
+        const name  = fieldName.value.trim();
+        if(!name) {
+            alert('Название обязательно');
+            fieldName.focus();
+            return;
+        }
+        const place = fieldPlace.value.trim();
+        const sn    = fieldSn.value.trim();
+        const dateS = fieldDate.value.trim();
+        let ts = 0;
+        if(dateS) ts = parseDate(dateS);
+
+        if(editIndex === -1) {
+            db.push({
+                id: fieldId.value || (db.length+1),
+                place, name, sn,
+                dateStr: dateS,
+                ts,
+                done: false
+            });
+        } else {
+            const it = db[editIndex];
+            it.name    = name;
+            it.place   = place;
+            it.sn      = sn;
+            it.dateStr = dateS;
+            it.ts      = ts;
+        }
+        db.sort((a,b) => a.ts - b.ts);
+        save();
+        closeModal();
         render();
     }
 
@@ -459,7 +671,7 @@
                         <span class="card-title">#${item.id} ${item.name || ''}</span>
                         <span class="card-days"
                               style="color:var(--${diff<0?'danger':diff<=30?'warning':'success'})">
-                              ${diff} дн.
+                              ${isNaN(diff)?'-':diff+' дн.'}
                         </span>
                     </div>
                     <div class="info-row">
@@ -476,16 +688,25 @@
                             <div class="info-value">${item.dateStr || ''}</div>
                         </div>
                     </div>
-                    ${!item.done ? `<button class="btn-done" onclick="mark(${idx})">ВЫПОЛНЕНО</button>` : ''}
+                    ${!item.done ? `<button class="btn-done" data-type="done" data-idx="${idx}">ВЫПОЛНЕНО</button>` : ''}
                 `;
+                card.addEventListener('click', (ev) => {
+                    const t = ev.target;
+                    if(t.dataset && t.dataset.type === 'done') {
+                        ev.stopPropagation();
+                        mark(parseInt(t.dataset.idx,10));
+                    } else {
+                        openModalEdit(idx);
+                    }
+                });
                 view.appendChild(card);
             }
         });
 
         document.getElementById('countTotal').innerText = s.total;
-        document.getElementById('countExp').innerText = s.exp;
-        document.getElementById('countSoon').innerText = s.soon;
-        document.getElementById('countDone').innerText = s.done;
+        document.getElementById('countExp').innerText   = s.exp;
+        document.getElementById('countSoon').innerText  = s.soon;
+        document.getElementById('countDone').innerText  = s.done;
     }
 
     function mark(i) {
@@ -503,6 +724,14 @@
     }
 
     document.getElementById('search').oninput = render;
+    document.getElementById('btnNew').onclick = openModalNew;
+    document.getElementById('modalClose').onclick = closeModal;
+    document.getElementById('btnCancel').onclick = closeModal;
+    document.getElementById('btnSave').onclick = saveFromModal;
+    document.getElementById('modalBackdrop').addEventListener('click', (e) => {
+        if(e.target === e.currentTarget) closeModal();
+    });
+
     render();
 </script>
 

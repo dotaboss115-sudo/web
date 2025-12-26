@@ -240,46 +240,39 @@
     header {
         position: relative;
         flex-shrink: 0;
-        padding: calc(env(safe-area-inset-top) + 10px) 15px 15px;
+        padding: calc(env(safe-area-inset-top) + 12px) 16px 14px;
         border-bottom: 1px solid #2a2a2c;
         z-index: 10;
         width: 100%;
         box-sizing: border-box;
-        backdrop-filter: blur(18px);
-        background:
-            radial-gradient(circle at top left, rgba(255,159,10,0.16) 0, transparent 60%),
-            rgba(0,0,0,0.9);
+        background: #000;
         overflow: hidden;
     }
 
     .logo {
         text-align: center;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 900;
-        letter-spacing: 3px;
-        margin-bottom: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 13px;
         text-transform: uppercase;
-        background: var(--grad-gold);
-        background-size: 220% 220%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 2.2s linear infinite;
+        color: #fff;
         line-height: 1.2;
     }
 
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 7px;
-        margin-bottom: 11px;
+        gap: 6px;
+        margin-bottom: 12px;
         width: 100%;
     }
 
     .stat-item {
         position: relative;
-        background: #111115;
-        padding: 9px 5px;
-        border-radius: 13px;
+        background: #1c1c1e;
+        padding: 10px 6px;
+        border-radius: 14px;
         text-align: center;
         border: 1px solid #2c2c2e;
         overflow: hidden;
@@ -289,59 +282,64 @@
         position: absolute;
         inset: -1px;
         border-radius: inherit;
-        background: radial-gradient(circle at top,rgba(255,159,10,0.25),transparent 55%);
+        background: transparent;
         opacity: 0;
-        transition: opacity 0.2s ease-out;
         pointer-events: none;
     }
-    .stat-item:active::before { opacity: 1; }
 
     .stat-item b {
         display: block;
-        font-size: 18px;
+        font-size: 22px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        font-weight: 800;
     }
     .stat-item span {
-        font-size: 8px;
+        font-size: 9px;
         color: #888;
         text-transform: uppercase;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        font-weight: 600;
+        letter-spacing: 0.3px;
     }
 
     .search-box {
         width: 100%;
         max-width: 100%;
-        background: rgba(44,44,46,0.95);
-        border: 1px solid #3a3a3c;
-        border-radius: 12px;
-        padding: 10px 12px;
+        background: #1c1c1e;
+        border: 1px solid #2c2c2e;
+        border-radius: 13px;
+        padding: 11px 14px;
         color: white;
         font-size: 15px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         box-sizing: border-box;
+    }
+    .search-box::placeholder {
+        color: #666;
     }
     .search-box:focus {
         outline: none;
-        border-color: var(--brand);
+        border-color: #3a3a3c;
+        background: #222225;
     }
 
     .action-bar {
         display: flex;
-        gap: 7px;
-        margin-bottom: 11px;
+        gap: 8px;
+        margin-bottom: 12px;
         width: 100%;
         box-sizing: border-box;
     }
     .btn-sm {
         flex: 1;
-        padding: 10px 11px;
-        border-radius: 12px;
+        padding: 11px 12px;
+        border-radius: 13px;
         border: none;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 800;
         flex-shrink: 0;
         overflow: hidden;
@@ -352,29 +350,32 @@
         align-items: center;
         justify-content: center;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
     }
     .btn-import {
         background: var(--grad-green);
-        background-size: 220% 220%;
-        color: #021108;
-        box-shadow: 0 6px 18px rgba(48,209,88,0.45);
+        background-size: 200% 200%;
+        color: #0a1f0d;
+        box-shadow: 0 4px 12px rgba(48,209,88,0.35);
+        font-weight: 900;
     }
     .btn-reset {
-        background: linear-gradient(135deg,#2c2c2e,#111111);
-        color: #ff7670;
-        border: 1px solid rgba(255,69,58,0.55);
+        background: #1c1c1e;
+        color: var(--danger);
+        border: 1.5px solid rgba(255,69,58,0.6);
+        font-weight: 900;
     }
     .btn-new {
         background: var(--grad-gold);
-        background-size: 220% 220%;
-        color: #140a02;
-        box-shadow: 0 6px 18px rgba(255,159,10,0.4);
+        background-size: 200% 200%;
+        color: #1a0f00;
+        box-shadow: 0 4px 12px rgba(255,159,10,0.35);
+        font-weight: 900;
     }
     .btn-import:active,
     .btn-reset:active,
     .btn-new:active {
-        opacity: 0.8;
+        opacity: 0.75;
     }
 
     .nav-tabs {
@@ -430,30 +431,22 @@
     }
 
     .card {
-        background: 
-            linear-gradient(135deg, rgba(255,159,10,0.08) 0%, transparent 100%),
-            #1c1c1e;
-        border-radius: 16px;
-        padding: 14px 15px;
-        margin-bottom: 12px;
+        background: #2c2c2e;
+        border-radius: 14px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
         border-left: 3px solid var(--success);
         position: relative;
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .card.urgent { 
-        border-left-color: var(--danger);
-        background: 
-            linear-gradient(135deg, rgba(255,69,58,0.1) 0%, transparent 100%),
-            #1c1c1e;
+        border-left-color: var(--warning);
     }
     .card.soon { 
         border-left-color: var(--warning);
-        background: 
-            linear-gradient(135deg, rgba(255,214,10,0.1) 0%, transparent 100%),
-            #1c1c1e;
     }
 
     .card-top {
@@ -480,47 +473,51 @@
     }
 
     .info-row {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         width: 100%;
         box-sizing: border-box;
     }
     .info-label {
         font-size: 10px;
-        color: #888;
+        color: #8e8e93;
         text-transform: uppercase;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         letter-spacing: 0.5px;
         font-weight: 600;
+        margin-bottom: 2px;
     }
     .info-value {
-        font-size: 14px;
-        margin-top: 3px;
+        font-size: 15px;
+        margin-top: 2px;
         line-height: 1.3;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         word-break: break-word;
-        color: #f5f5f5;
+        color: #fff;
         font-weight: 500;
     }
 
     .btn-done {
         width: 100%;
-        padding: 12px;
+        padding: 13px;
         background: var(--grad-green);
         background-size: 200% 200%;
         border: none;
-        border-radius: 12px;
-        font-weight: 800;
-        margin-top: 10px;
+        border-radius: 11px;
+        font-weight: 900;
+        margin-top: 12px;
         font-size: 13px;
         box-sizing: border-box;
-        color: #021108;
+        color: #0a1f0d;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 14px rgba(48,209,88,0.4);
+        letter-spacing: 1.2px;
+        box-shadow: 0 3px 10px rgba(48,209,88,0.4);
+    }
+    .btn-done:active {
+        opacity: 0.85;
     }
 
     /* Модалка редактирования */
@@ -684,7 +681,6 @@
 <input type="text" id="search" class="search-box" placeholder="Поиск по S/N или названию...">
 
 <div class="action-bar">
-    <button class="btn-sm btn-new" id="btnNew">НОВАЯ</button>
     <label class="btn-sm btn-import">
         ИМПОРТ
         <input type="file" id="file" style="display:none" accept=".csv">
@@ -1049,7 +1045,6 @@
     }
 
     document.getElementById('search').oninput = render;
-    document.getElementById('btnNew').onclick = openModalNew;
     document.getElementById('btnReset').onclick = resetDB;
     document.getElementById('modalClose').onclick = closeModal;
     document.getElementById('btnCancel').onclick = closeModal;

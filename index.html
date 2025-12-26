@@ -61,7 +61,7 @@
     }
 
     body {
-        background: radial-gradient(circle at top,#111 0,#000 55%);
+        background: #000;
         color: white;
         font-family: -apple-system, system-ui, sans-serif;
         margin: 0;
@@ -426,24 +426,35 @@
         box-sizing: border-box;
         overscroll-behavior: contain;
         position: relative;
+        background: #000;
     }
 
     .card {
-        background:
-            radial-gradient(circle at top left,rgba(255,159,10,0.10),transparent 60%),
-            var(--card-bg);
-        border-radius: 18px;
-        padding: 16px;
-        margin-bottom: 14px;
-        border-left: 4px solid var(--success);
+        background: 
+            linear-gradient(135deg, rgba(255,159,10,0.08) 0%, transparent 100%),
+            #1c1c1e;
+        border-radius: 16px;
+        padding: 14px 15px;
+        margin-bottom: 12px;
+        border-left: 3px solid var(--success);
         position: relative;
         width: 100%;
         box-sizing: border-box;
         overflow: hidden;
-        box-shadow: 0 10px 26px rgba(0,0,0,0.65);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
     }
-    .card.urgent { border-left-color: var(--danger); }
-    .card.soon   { border-left-color: var(--warning); }
+    .card.urgent { 
+        border-left-color: var(--danger);
+        background: 
+            linear-gradient(135deg, rgba(255,69,58,0.1) 0%, transparent 100%),
+            #1c1c1e;
+    }
+    .card.soon { 
+        border-left-color: var(--warning);
+        background: 
+            linear-gradient(135deg, rgba(255,214,10,0.1) 0%, transparent 100%),
+            #1c1c1e;
+    }
 
     .card-top {
         display: flex;
@@ -453,21 +464,17 @@
         box-sizing: border-box;
     }
     .card-title {
-        font-weight: 800;
-        font-size: 14px;
-        max-width: 75%;
+        font-weight: 700;
+        font-size: 15px;
+        max-width: 70%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        background: var(--grad-gold);
-        background-size: 220% 220%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 3s linear infinite;
+        color: #fff;
     }
     .card-days {
         font-weight: 800;
-        font-size: 13px;
+        font-size: 15px;
         flex-shrink: 0;
         white-space: nowrap;
     }
@@ -478,38 +485,42 @@
         box-sizing: border-box;
     }
     .info-label {
-        font-size: 9px;
+        font-size: 10px;
         color: #888;
         text-transform: uppercase;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        letter-spacing: 0.5px;
+        font-weight: 600;
     }
     .info-value {
-        font-size: 13px;
-        margin-top: 2px;
-        line-height: 1.2;
+        font-size: 14px;
+        margin-top: 3px;
+        line-height: 1.3;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         word-break: break-word;
+        color: #f5f5f5;
+        font-weight: 500;
     }
 
     .btn-done {
         width: 100%;
-        padding: 13px;
+        padding: 12px;
         background: var(--grad-green);
-        background-size: 220% 220%;
+        background-size: 200% 200%;
         border: none;
-        border-radius: 14px;
+        border-radius: 12px;
         font-weight: 800;
-        margin-top: 8px;
-        font-size: 14px;
+        margin-top: 10px;
+        font-size: 13px;
         box-sizing: border-box;
         color: #021108;
         text-transform: uppercase;
-        letter-spacing: 0.6px;
-        box-shadow: 0 9px 24px rgba(48,209,88,0.55);
+        letter-spacing: 1px;
+        box-shadow: 0 4px 14px rgba(48,209,88,0.4);
     }
 
     /* Модалка редактирования */
@@ -525,15 +536,14 @@
     }
     .modal {
         width: 92%;
-        max-width: 420px;
-        max-height: 80vh;
-        background:
-            radial-gradient(circle at top,rgba(255,159,10,0.16),transparent 60%),
-            #18181b;
-        border-radius: 20px;
-        padding: 18px 16px 16px;
+        max-width: 400px;
+        max-height: 75vh;
+        background: #18181b;
+        border: 1px solid #2c2c2e;
+        border-radius: 18px;
+        padding: 16px;
         box-sizing: border-box;
-        box-shadow: 0 24px 64px rgba(0,0,0,0.85);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.9);
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -546,12 +556,8 @@
     }
     .modal-title {
         font-weight: 800;
-        font-size: 16px;
-        background: var(--grad-gold);
-        background-size: 220% 220%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shimmer 2.4s linear infinite;
+        font-size: 18px;
+        color: #fff;
     }
     .modal-close {
         border: none;
@@ -574,18 +580,19 @@
     }
     .field-input {
         width: 100%;
-        padding: 9px 10px;
-        border-radius: 10px;
+        padding: 11px 12px;
+        border-radius: 11px;
         border: 1px solid #3a3a3c;
         background: #1d1d20;
         color: #fff;
-        font-size: 14px;
+        font-size: 15px;
         box-sizing: border-box;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
     .field-input:focus {
         outline: none;
         border-color: var(--brand);
+        background: #222225;
     }
 
     .modal-footer {

@@ -28,6 +28,30 @@
 
         --grad-gold: linear-gradient(135deg,#ffd60a 0%,#ff9f0a 50%,#ff8c00 100%);
         --grad-green: linear-gradient(135deg,#34c759 0%,#30d158 50%,#28cd4c 100%);
+        --grad-danger: linear-gradient(135deg,#ff6b6b 0%,#ff453a 50%,#ff3b30 100%);
+        --grad-warning: linear-gradient(135deg,#ffdc00 0%,#ffd60a 50%,#ffcc00 100%);
+        
+        /* Анимированные градиенты */
+        --grad-animated-1: linear-gradient(45deg, #ff9f0a, #ffd60a, #ff9f0a);
+        --grad-animated-2: linear-gradient(45deg, #34c759, #30d158, #34c759);
+        --grad-animated-3: linear-gradient(45deg, #ff453a, #ff6b6b, #ff453a);
+        --grad-animated-4: linear-gradient(45deg, #ffd60a, #ffdc00, #ffd60a);
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+
+    @keyframes glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(255,159,10,0.3); }
+        50% { box-shadow: 0 0 40px rgba(255,159,10,0.6); }
     }
 
     @keyframes slideUp {
@@ -106,25 +130,32 @@
         box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     }
     .login-icon {
-        width: 72px;
-        height: 72px;
+        width: 76px;
+        height: 76px;
         margin: 0 auto 18px;
-        background: var(--grad-gold);
-        border-radius: 18px;
+        background: var(--grad-animated-1);
+        background-size: 200% 200%;
+        border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 36px;
-        box-shadow: 0 8px 24px rgba(255,159,10,0.4);
-        animation: float 3s ease-in-out infinite;
+        font-size: 38px;
+        box-shadow: 
+            0 10px 30px rgba(255,159,10,0.5),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+        animation: float 3s ease-in-out infinite, gradientShift 4s ease infinite;
     }
     .login-title {
-        font-size: 26px;
+        font-size: 28px;
         font-weight: 900;
         text-align: center;
-        color: var(--brand);
-        margin-bottom: 6px;
+        background: var(--grad-animated-1);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 8px;
         letter-spacing: 0.5px;
+        animation: gradientShift 3s ease infinite;
     }
     .login-subtitle {
         text-align: center;
@@ -159,17 +190,33 @@
     }
     .login-btn {
         width: 100%;
-        background: var(--grad-gold);
+        background: var(--grad-animated-1);
+        background-size: 200% 200%;
         border: none;
-        border-radius: 13px;
-        padding: 15px;
+        border-radius: 14px;
+        padding: 16px;
         font-size: 15px;
         font-weight: 800;
         color: #1a0f00;
         text-transform: uppercase;
         letter-spacing: 0.8px;
-        box-shadow: 0 6px 20px rgba(255,159,10,0.4);
-        transition: all 0.2s;
+        box-shadow: 
+            0 8px 24px rgba(255,159,10,0.5),
+            inset 0 1px 0 rgba(255,255,255,0.3);
+        animation: gradientShift 3s ease infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    .login-btn::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 2s infinite;
     }
     .login-btn:active {
         opacity: 0.85;
@@ -269,22 +316,29 @@
         font-weight: 900;
         letter-spacing: 1.5px;
         text-transform: uppercase;
-        color: #fff;
+        background: var(--grad-animated-1);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 3s ease infinite;
     }
 
     .btn-cache {
-        background: transparent;
-        border: 1px solid var(--text-tertiary);
-        color: var(--text-secondary);
-        border-radius: 8px;
-        padding: 6px 10px;
-        font-size: 10px;
-        font-weight: 700;
+        background: linear-gradient(135deg, rgba(255,159,10,0.15), rgba(255,214,10,0.15));
+        border: 1px solid rgba(255,159,10,0.4);
+        color: var(--brand);
+        border-radius: 10px;
+        padding: 7px 12px;
+        font-size: 11px;
+        font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        box-shadow: 0 4px 12px rgba(255,159,10,0.15);
+        transition: all 0.3s;
     }
     .btn-cache:active {
-        opacity: 0.6;
+        opacity: 0.7;
+        transform: scale(0.95);
     }
 
     .stats-grid {
@@ -295,17 +349,33 @@
     }
 
     .stat-item {
-        background: var(--surface);
-        padding: 10px 6px;
-        border-radius: 13px;
+        background: linear-gradient(135deg, rgba(28,28,30,0.8), rgba(44,44,46,0.6));
+        padding: 11px 6px;
+        border-radius: 14px;
         text-align: center;
-        border: 1px solid var(--surface-elevated);
+        border: 1px solid rgba(255,159,10,0.2);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    
+    .stat-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,159,10,0.3), transparent);
+        animation: shimmer 3s infinite;
     }
 
     .stat-item b {
         display: block;
-        font-size: 22px;
-        font-weight: 800;
+        font-size: 24px;
+        font-weight: 900;
+        position: relative;
+        z-index: 1;
     }
     .stat-item span {
         font-size: 9px;
@@ -313,6 +383,8 @@
         text-transform: uppercase;
         font-weight: 600;
         letter-spacing: 0.3px;
+        position: relative;
+        z-index: 1;
     }
 
     .search-box {
@@ -353,17 +425,35 @@
         letter-spacing: 0.6px;
     }
     .btn-import {
-        background: var(--grad-green);
+        background: var(--grad-animated-2);
+        background-size: 200% 200%;
         color: #0a1f0d;
-        box-shadow: 0 4px 12px rgba(48,209,88,0.3);
+        box-shadow: 0 6px 18px rgba(48,209,88,0.4);
+        animation: gradientShift 3s ease infinite;
+        position: relative;
+        overflow: hidden;
     }
+    .btn-import::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    
     .btn-reset {
-        background: var(--surface);
+        background: linear-gradient(135deg, rgba(255,69,58,0.15), rgba(255,107,107,0.1));
         color: var(--danger);
         border: 1.5px solid rgba(255,69,58,0.5);
+        box-shadow: 0 4px 12px rgba(255,69,58,0.2);
     }
     .btn-import:active, .btn-reset:active {
         opacity: 0.75;
+        transform: scale(0.97);
     }
 
     .nav-tabs {
@@ -380,7 +470,7 @@
 
     .tab {
         flex-shrink: 0;
-        padding: 8px 14px;
+        padding: 9px 16px;
         border-radius: 999px;
         font-size: 11px;
         font-weight: 800;
@@ -389,12 +479,16 @@
         background: var(--surface);
         color: var(--text-secondary);
         letter-spacing: 0.3px;
+        transition: all 0.3s;
     }
     .tab.active {
-        border-color: rgba(50,215,75,0.7);
-        background: rgba(50,215,75,0.12);
+        border-color: var(--success);
+        background: linear-gradient(135deg, rgba(50,215,75,0.2), rgba(52,199,89,0.15));
         color: var(--success);
-        box-shadow: 0 3px 10px rgba(50,215,75,0.15);
+        box-shadow: 
+            0 4px 15px rgba(50,215,75,0.25),
+            inset 0 0 20px rgba(50,215,75,0.1);
+        animation: glow 2s ease-in-out infinite;
     }
 
     /* SCROLL AREA */
@@ -410,18 +504,54 @@
 
     /* CARDS */
     .card {
-        background: var(--surface-elevated);
-        border-radius: 14px;
-        padding: 14px 15px;
-        margin-bottom: 10px;
-        border-left: 3px solid var(--success);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        background: linear-gradient(135deg, rgba(44,44,46,0.95), rgba(28,28,30,0.9));
+        border-radius: 16px;
+        padding: 15px 16px;
+        margin-bottom: 12px;
+        border-left: 4px solid transparent;
+        box-shadow: 
+            0 4px 12px rgba(0,0,0,0.4),
+            0 0 0 1px rgba(255,159,10,0.1);
+        position: relative;
+        overflow: hidden;
     }
+    
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(255,159,10,0.3), transparent, rgba(255,159,10,0.1));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+    
     .card.urgent { 
         border-left-color: var(--warning);
+        box-shadow: 
+            0 4px 12px rgba(0,0,0,0.4),
+            0 0 20px rgba(255,214,10,0.15);
     }
+    .card.urgent::before {
+        background: linear-gradient(135deg, rgba(255,214,10,0.4), transparent, rgba(255,214,10,0.2));
+    }
+    
     .card.soon { 
         border-left-color: var(--warning);
+        box-shadow: 
+            0 4px 12px rgba(0,0,0,0.4),
+            0 0 20px rgba(255,214,10,0.15);
+    }
+    .card.soon::before {
+        background: linear-gradient(135deg, rgba(255,214,10,0.4), transparent, rgba(255,214,10,0.2));
     }
 
     .card-top {
@@ -467,20 +597,38 @@
 
     .btn-done {
         width: 100%;
-        padding: 13px;
-        background: var(--grad-green);
+        padding: 14px;
+        background: var(--grad-animated-2);
+        background-size: 200% 200%;
         border: none;
-        border-radius: 11px;
+        border-radius: 12px;
         font-weight: 900;
         margin-top: 12px;
-        font-size: 13px;
+        font-size: 14px;
         color: #0a1f0d;
         text-transform: uppercase;
         letter-spacing: 1px;
-        box-shadow: 0 3px 10px rgba(48,209,88,0.35);
+        box-shadow: 
+            0 4px 15px rgba(48,209,88,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+        animation: gradientShift 3s ease infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-done::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 2s infinite;
     }
     .btn-done:active {
         opacity: 0.85;
+        transform: scale(0.98);
     }
 
     /* MODAL */
@@ -569,26 +717,45 @@
     .btn-save {
         flex: 1;
         border: none;
-        border-radius: 12px;
-        padding: 12px;
+        border-radius: 13px;
+        padding: 13px;
         font-size: 14px;
         font-weight: 800;
-        background: var(--grad-green);
+        background: var(--grad-animated-2);
+        background-size: 200% 200%;
         color: #0a1f0d;
-        box-shadow: 0 6px 18px rgba(48,209,88,0.4);
+        box-shadow: 
+            0 6px 20px rgba(48,209,88,0.45),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+        animation: gradientShift 3s ease infinite;
+        position: relative;
+        overflow: hidden;
+    }
+    .btn-save::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.25), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 2.5s infinite;
     }
     .btn-cancel {
         flex: 1;
         border: none;
-        border-radius: 12px;
-        padding: 12px;
+        border-radius: 13px;
+        padding: 13px;
         font-size: 14px;
         font-weight: 700;
-        background: #27272a;
+        background: linear-gradient(135deg, #27272a, #1c1c1e);
         color: #f2f2f2;
+        border: 1px solid rgba(255,255,255,0.1);
     }
     .btn-save:active, .btn-cancel:active {
         opacity: 0.8;
+        transform: scale(0.97);
     }
 
     .empty-state {

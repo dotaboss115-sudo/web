@@ -9,27 +9,27 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>SIBINTEK FINAL v2.0</title>
+    <title>СИБИНТЕК ТО • v2.0</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         :root {
             --brand: #ff9f0a;
             --bg: #000000;
-            --card-bg: #1c1c1e;
+            --surface: #1c1c1e;
+            --surface-elevated: #2c2c2e;
             --danger: #ff453a;
             --success: #32d74b;
             --warning: #ffd60a;
 
 ```
-        --grad-gold: linear-gradient(120deg,#ff9f0a,#ffd60a,#ff9f0a);
-        --grad-green: linear-gradient(135deg,#34c759,#30d158,#34c759);
-        --grad-tab: linear-gradient(135deg,#ff9f0a,#ffd60a,#ff9f0a);
+        --text-primary: #ffffff;
+        --text-secondary: #8e8e93;
+        --text-tertiary: #48484a;
+
+        --grad-gold: linear-gradient(135deg,#ffd60a 0%,#ff9f0a 50%,#ff8c00 100%);
+        --grad-green: linear-gradient(135deg,#34c759 0%,#30d158 50%,#28cd4c 100%);
     }
 
-    @keyframes shimmer {
-        0%   { background-position: 0% 50%; }
-        100% { background-position: 200% 50%; }
-    }
     @keyframes slideUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -40,12 +40,23 @@
     }
     @keyframes shake {
         0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-10px); }
-        75% { transform: translateX(10px); }
+        25% { transform: translateX(-8px); }
+        75% { transform: translateX(8px); }
     }
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+        50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
     }
 
     html { 
@@ -65,86 +76,82 @@
 
     body {
         background: #000;
-        color: white;
-        font-family: -apple-system, system-ui, sans-serif;
-        margin: 0;
-        padding: 0;
+        color: var(--text-primary);
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
         position: fixed;
         inset: 0;
         display: flex;
         flex-direction: column;
-        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
     }
 
     /* LOGIN SCREEN */
     .login-screen {
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at top,rgba(255,159,10,0.12),transparent 50%),
-                    linear-gradient(180deg,#111 0%,#000 100%);
+        background: #000;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 100;
-        animation: fadeIn 0.4s ease-out;
+        animation: fadeIn 0.3s ease-out;
     }
     .login-card {
-        width: min(360px, 90%);
-        background: radial-gradient(circle at top,rgba(255,159,10,0.15),transparent 60%),#1c1c1e;
-        border-radius: 24px;
-        border: 1px solid #2c2c2e;
-        padding: 40px 28px;
+        width: min(340px, 88%);
+        background: var(--surface);
+        border-radius: 22px;
+        border: 1px solid var(--surface-elevated);
+        padding: 36px 26px;
         animation: slideUp 0.5s cubic-bezier(0.4,0,0.2,1);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.8);
     }
     .login-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 20px;
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 18px;
         background: var(--grad-gold);
-        border-radius: 20px;
+        border-radius: 18px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 40px;
+        font-size: 36px;
         box-shadow: 0 8px 24px rgba(255,159,10,0.4);
         animation: float 3s ease-in-out infinite;
     }
     .login-title {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 900;
         text-align: center;
-        background: var(--grad-gold);
-        background-size: 200% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 8px;
-        letter-spacing: 1px;
+        color: var(--brand);
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
     }
     .login-subtitle {
         text-align: center;
         font-size: 13px;
-        color: #888;
-        margin-bottom: 32px;
+        color: var(--text-secondary);
+        margin-bottom: 28px;
+        font-weight: 500;
     }
     .login-input {
         width: 100%;
-        background: #111;
-        border: 2px solid #2c2c2e;
-        border-radius: 14px;
-        padding: 14px 16px;
+        background: #0d0d0f;
+        border: 1.5px solid var(--surface-elevated);
+        border-radius: 13px;
+        padding: 13px 16px;
         color: white;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 600;
         text-align: center;
-        letter-spacing: 4px;
-        margin-bottom: 16px;
+        letter-spacing: 3px;
+        margin-bottom: 14px;
         transition: all 0.3s;
     }
     .login-input:focus {
         outline: none;
         border-color: var(--brand);
-        box-shadow: 0 0 0 4px rgba(255,159,10,0.2);
+        background: #111;
+        box-shadow: 0 0 0 3px rgba(255,159,10,0.15);
     }
     .login-input.error {
         border-color: var(--danger);
@@ -154,24 +161,26 @@
         width: 100%;
         background: var(--grad-gold);
         border: none;
-        border-radius: 14px;
-        padding: 16px;
-        font-size: 16px;
+        border-radius: 13px;
+        padding: 15px;
+        font-size: 15px;
         font-weight: 800;
-        color: #140a02;
+        color: #1a0f00;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.8px;
         box-shadow: 0 6px 20px rgba(255,159,10,0.4);
-        transition: all 0.3s;
+        transition: all 0.2s;
     }
     .login-btn:active {
-        opacity: 0.8;
+        opacity: 0.85;
+        transform: scale(0.98);
     }
     .login-error {
         text-align: center;
         color: var(--danger);
         font-size: 13px;
-        margin-top: 12px;
+        font-weight: 600;
+        margin-top: 10px;
         opacity: 0;
         transition: opacity 0.3s;
     }
@@ -180,31 +189,31 @@
     }
     .login-footer {
         text-align: center;
-        margin-top: 24px;
+        margin-top: 22px;
         font-size: 11px;
-        color: #555;
+        color: var(--text-tertiary);
     }
 
     /* TOAST */
     .toast {
         position: fixed;
-        top: calc(env(safe-area-inset-top) + 80px);
+        top: calc(env(safe-area-inset-top) + 16px);
         left: 50%;
-        transform: translateX(-50%) translateY(-100px);
+        transform: translateX(-50%) translateY(-80px);
         background: rgba(28,28,30,0.98);
         backdrop-filter: blur(20px);
-        border: 1.5px solid #3a3a3c;
-        border-radius: 16px;
-        padding: 14px 24px;
-        font-size: 15px;
+        border: 1.5px solid var(--surface-elevated);
+        border-radius: 15px;
+        padding: 13px 22px;
+        font-size: 14px;
         font-weight: 700;
-        box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.8);
         z-index: 150;
         opacity: 0;
         transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         min-width: 200px;
         justify-content: center;
     }
@@ -214,18 +223,16 @@
     }
     .toast.success {
         border-color: var(--success);
-        background: 
-            radial-gradient(circle at top, rgba(50,215,75,0.2), transparent 60%),
-            rgba(28,28,30,0.98);
+        background: rgba(50,215,75,0.15);
+        color: #fff;
     }
     .toast.error {
         border-color: var(--danger);
-        background: 
-            radial-gradient(circle at top, rgba(255,69,58,0.2), transparent 60%),
-            rgba(28,28,30,0.98);
+        background: rgba(255,69,58,0.15);
+        color: #fff;
     }
     .toast-icon {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     /* MAIN APP */
@@ -240,27 +247,44 @@
         display: none !important;
     }
 
+    /* HEADER */
     header {
         position: relative;
         flex-shrink: 0;
-        padding: calc(env(safe-area-inset-top) + 12px) 16px 14px;
+        padding: calc(env(safe-area-inset-top) + 12px) 16px 13px;
+        background: #000;
         border-bottom: 1px solid #2a2a2c;
         z-index: 10;
-        width: 100%;
-        box-sizing: border-box;
-        background: #000;
-        overflow: hidden;
+    }
+
+    .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 13px;
     }
 
     .logo {
-        text-align: center;
-        font-size: 20px;
+        font-size: 19px;
         font-weight: 900;
-        letter-spacing: 2px;
-        margin-bottom: 13px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
         color: #fff;
-        line-height: 1.2;
+    }
+
+    .btn-cache {
+        background: transparent;
+        border: 1px solid var(--text-tertiary);
+        color: var(--text-secondary);
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .btn-cache:active {
+        opacity: 0.6;
     }
 
     .stats-grid {
@@ -268,87 +292,60 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 6px;
         margin-bottom: 12px;
-        width: 100%;
     }
 
     .stat-item {
-        position: relative;
-        background: #1c1c1e;
+        background: var(--surface);
         padding: 10px 6px;
-        border-radius: 14px;
+        border-radius: 13px;
         text-align: center;
-        border: 1px solid #2c2c2e;
-        overflow: hidden;
-    }
-    .stat-item::before {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        border-radius: inherit;
-        background: transparent;
-        opacity: 0;
-        pointer-events: none;
+        border: 1px solid var(--surface-elevated);
     }
 
     .stat-item b {
         display: block;
         font-size: 22px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-weight: 800;
     }
     .stat-item span {
         font-size: 9px;
-        color: #888;
+        color: var(--text-secondary);
         text-transform: uppercase;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-weight: 600;
         letter-spacing: 0.3px;
     }
 
     .search-box {
         width: 100%;
-        max-width: 100%;
-        background: #1c1c1e;
-        border: 1px solid #2c2c2e;
-        border-radius: 13px;
+        background: var(--surface);
+        border: 1px solid var(--surface-elevated);
+        border-radius: 12px;
         padding: 11px 14px;
         color: white;
         font-size: 15px;
         margin-bottom: 12px;
-        box-sizing: border-box;
     }
     .search-box::placeholder {
-        color: #666;
+        color: var(--text-tertiary);
     }
     .search-box:focus {
         outline: none;
         border-color: #3a3a3c;
-        background: #222225;
+        background: #222;
     }
 
     .action-bar {
         display: flex;
         gap: 8px;
         margin-bottom: 12px;
-        width: 100%;
-        box-sizing: border-box;
     }
     .btn-sm {
         flex: 1;
         padding: 11px 12px;
-        border-radius: 13px;
+        border-radius: 12px;
         border: none;
         font-size: 12px;
         font-weight: 800;
-        flex-shrink: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -357,40 +354,25 @@
     }
     .btn-import {
         background: var(--grad-green);
-        background-size: 200% 200%;
         color: #0a1f0d;
-        box-shadow: 0 4px 12px rgba(48,209,88,0.35);
-        font-weight: 900;
+        box-shadow: 0 4px 12px rgba(48,209,88,0.3);
     }
     .btn-reset {
-        background: #1c1c1e;
+        background: var(--surface);
         color: var(--danger);
-        border: 1.5px solid rgba(255,69,58,0.6);
-        font-weight: 900;
+        border: 1.5px solid rgba(255,69,58,0.5);
     }
-    .btn-new {
-        background: var(--grad-gold);
-        background-size: 200% 200%;
-        color: #1a0f00;
-        box-shadow: 0 4px 12px rgba(255,159,10,0.35);
-        font-weight: 900;
-    }
-    .btn-import:active,
-    .btn-reset:active,
-    .btn-new:active {
+    .btn-import:active, .btn-reset:active {
         opacity: 0.75;
     }
 
     .nav-tabs {
         display: flex;
-        gap: 8px;
+        gap: 7px;
         overflow-x: auto;
-        overflow-y: hidden;
         scrollbar-width: none;
-        padding-bottom: 5px;
+        padding-bottom: 4px;
         -webkit-overflow-scrolling: touch;
-        width: 100%;
-        box-sizing: border-box;
     }
     .nav-tabs::-webkit-scrollbar {
         display: none;
@@ -398,51 +380,41 @@
 
     .tab {
         flex-shrink: 0;
-        padding: 8px 15px;
+        padding: 8px 14px;
         border-radius: 999px;
         font-size: 11px;
         font-weight: 800;
         white-space: nowrap;
         border: 1px solid transparent;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 160px;
-        background: rgba(44,44,46,0.9);
-        color: #a1a1a5;
+        background: var(--surface);
+        color: var(--text-secondary);
         letter-spacing: 0.3px;
     }
     .tab.active {
-        border-color: rgba(50,215,75,0.8);
-        background:
-            radial-gradient(circle at top left,rgba(50,215,75,0.25),transparent 65%),
-            #1b1b1f;
-        color: #e5ffe9;
-        box-shadow: 0 4px 12px rgba(50,215,75,0.2);
+        border-color: rgba(50,215,75,0.7);
+        background: rgba(50,215,75,0.12);
+        color: var(--success);
+        box-shadow: 0 3px 10px rgba(50,215,75,0.15);
     }
 
+    /* SCROLL AREA */
     .scroll-area {
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 15px;
+        padding: 14px 16px 20px;
         -webkit-overflow-scrolling: touch;
-        width: 100%;
-        box-sizing: border-box;
         overscroll-behavior: contain;
-        position: relative;
         background: #000;
     }
 
+    /* CARDS */
     .card {
-        background: #2c2c2e;
+        background: var(--surface-elevated);
         border-radius: 14px;
-        padding: 14px 16px;
+        padding: 14px 15px;
         margin-bottom: 10px;
         border-left: 3px solid var(--success);
-        position: relative;
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
         box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .card.urgent { 
@@ -456,13 +428,11 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
-        width: 100%;
-        box-sizing: border-box;
     }
     .card-title {
         font-weight: 700;
         font-size: 15px;
-        max-width: 70%;
+        max-width: 68%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -472,63 +442,53 @@
         font-weight: 800;
         font-size: 15px;
         flex-shrink: 0;
-        white-space: nowrap;
     }
 
     .info-row {
         margin-bottom: 8px;
-        width: 100%;
-        box-sizing: border-box;
     }
     .info-label {
         font-size: 10px;
-        color: #8e8e93;
+        color: var(--text-secondary);
         text-transform: uppercase;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         letter-spacing: 0.5px;
         font-weight: 600;
         margin-bottom: 2px;
     }
     .info-value {
         font-size: 15px;
-        margin-top: 2px;
         line-height: 1.3;
+        color: #fff;
+        font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        word-break: break-word;
-        color: #fff;
-        font-weight: 500;
     }
 
     .btn-done {
         width: 100%;
         padding: 13px;
         background: var(--grad-green);
-        background-size: 200% 200%;
         border: none;
         border-radius: 11px;
         font-weight: 900;
         margin-top: 12px;
         font-size: 13px;
-        box-sizing: border-box;
         color: #0a1f0d;
         text-transform: uppercase;
-        letter-spacing: 1.2px;
-        box-shadow: 0 3px 10px rgba(48,209,88,0.4);
+        letter-spacing: 1px;
+        box-shadow: 0 3px 10px rgba(48,209,88,0.35);
     }
     .btn-done:active {
         opacity: 0.85;
     }
 
-    /* Модалка редактирования */
+    /* MODAL */
     .modal-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0,0,0,0.72);
-        backdrop-filter: blur(14px);
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(12px);
         display: none;
         align-items: center;
         justify-content: center;
@@ -538,11 +498,10 @@
         width: 92%;
         max-width: 400px;
         max-height: 75vh;
-        background: #18181b;
-        border: 1px solid #2c2c2e;
+        background: var(--surface);
+        border: 1px solid var(--surface-elevated);
         border-radius: 18px;
         padding: 16px;
-        box-sizing: border-box;
         box-shadow: 0 20px 60px rgba(0,0,0,0.9);
         display: flex;
         flex-direction: column;
@@ -562,9 +521,12 @@
     .modal-close {
         border: none;
         background: transparent;
-        color: #aaa;
-        font-size: 22px;
+        color: var(--text-secondary);
+        font-size: 26px;
         line-height: 1;
+        padding: 0;
+        width: 32px;
+        height: 32px;
     }
 
     .modal-body {
@@ -575,24 +537,28 @@
     .field-label {
         font-size: 10px;
         text-transform: uppercase;
-        color: #888;
-        margin-bottom: 3px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
     }
     .field-input {
         width: 100%;
         padding: 11px 12px;
         border-radius: 11px;
-        border: 1px solid #3a3a3c;
-        background: #1d1d20;
+        border: 1px solid var(--surface-elevated);
+        background: #0d0d0f;
         color: #fff;
         font-size: 15px;
-        box-sizing: border-box;
         margin-bottom: 10px;
     }
     .field-input:focus {
         outline: none;
         border-color: var(--brand);
-        background: #222225;
+        background: #111;
+    }
+    .field-input:read-only {
+        color: var(--text-secondary);
     }
 
     .modal-footer {
@@ -604,27 +570,41 @@
         flex: 1;
         border: none;
         border-radius: 12px;
-        padding: 11px;
-        font-size: 13px;
+        padding: 12px;
+        font-size: 14px;
         font-weight: 800;
         background: var(--grad-green);
-        background-size: 220% 220%;
-        color: #021108;
-        box-shadow: 0 7px 20px rgba(48,209,88,0.55);
+        color: #0a1f0d;
+        box-shadow: 0 6px 18px rgba(48,209,88,0.4);
     }
     .btn-cancel {
         flex: 1;
         border: none;
         border-radius: 12px;
-        padding: 11px;
-        font-size: 13px;
+        padding: 12px;
+        font-size: 14px;
         font-weight: 700;
         background: #27272a;
         color: #f2f2f2;
     }
-    .btn-save:active,
-    .btn-cancel:active {
+    .btn-save:active, .btn-cancel:active {
         opacity: 0.8;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-tertiary);
+    }
+    .empty-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+        opacity: 0.5;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    .empty-text {
+        font-size: 14px;
+        font-weight: 500;
     }
 
     @supports(padding-bottom: env(safe-area-inset-bottom)) {
@@ -642,7 +622,7 @@
     <div class="login-card">
         <div class="login-icon">🔐</div>
         <div class="login-title">СИБИНТЕК</div>
-        <div class="login-subtitle">Система управления техническим обслуживанием</div>
+        <div class="login-subtitle">Управление техническим обслуживанием</div>
         <form id="loginForm">
             <input 
                 type="password" 
@@ -671,12 +651,15 @@
 <div class="main-app hidden" id="mainApp">
 
 <header>
-    <div class="logo">Сибинтек</div>
+    <div class="header-top">
+        <div class="logo">СИБИНТЕК</div>
+        <button class="btn-cache" id="btnClearCache">🧹 Кеш</button>
+    </div>
 
 ```
 <div class="stats-grid">
     <div class="stat-item"><b id="countTotal">0</b><span>Всего</span></div>
-    <div class="stat-item"><b id="countExp" style="color:var(--danger)">0</b><span>Прошл</span></div>
+    <div class="stat-item"><b id="countExp" style="color:var(--danger)">0</b><span>Прошло</span></div>
     <div class="stat-item"><b id="countSoon" style="color:var(--warning)">0</b><span>Скоро</span></div>
     <div class="stat-item"><b id="countDone" style="color:var(--success)">0</b><span>Архив</span></div>
 </div>
@@ -685,10 +668,10 @@
 
 <div class="action-bar">
     <label class="btn-sm btn-import">
-        ИМПОРТ
+        📥 ИМПОРТ
         <input type="file" id="file" style="display:none" accept=".csv">
     </label>
-    <button class="btn-sm btn-reset" id="btnReset">СБРОС</button>
+    <button class="btn-sm btn-reset" id="btnReset">🗑️ СБРОС</button>
 </div>
 
 <div class="nav-tabs" id="tabBar">
@@ -705,7 +688,7 @@
 
 </div>
 
-<!-- Модалка редактирования/добавления -->
+<!-- MODAL -->
 
 <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
@@ -741,26 +724,14 @@
 
 <script>
     const PASSWORD = '65420';
-    const AUTH_KEY = 'sib_auth_v4';
-    const DB_KEY = 'sib_v4';
+    const AUTH_KEY = 'sib_auth_v5';
+    const DB_KEY = 'sib_v5';
     const VERSION_KEY = 'sib_version';
-    const CURRENT_VERSION = '2.0'; // Новая версия для сброса кеша
+    const CURRENT_VERSION = '2.0';
 
     let db = [];
     let filter = 'active';
     let editIndex = -1;
-
-    // FORCE CACHE CLEAR ON VERSION CHANGE
-    function checkVersion() {
-        const savedVersion = localStorage.getItem(VERSION_KEY);
-        if (savedVersion !== CURRENT_VERSION) {
-            // Очищаем весь старый кеш
-            localStorage.removeItem(DB_KEY);
-            localStorage.removeItem(AUTH_KEY);
-            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
-            console.log('Кеш очищен - новая версия:', CURRENT_VERSION);
-        }
-    }
 
     const loginScreen = document.getElementById('loginScreen');
     const mainApp = document.getElementById('mainApp');
@@ -773,12 +744,33 @@
 
     const backdrop = document.getElementById('modalBackdrop');
     const modalTitleEl = document.getElementById('modalTitle');
-
-    const fieldId    = document.getElementById('fieldId');
-    const fieldName  = document.getElementById('fieldName');
+    const fieldId = document.getElementById('fieldId');
+    const fieldName = document.getElementById('fieldName');
     const fieldPlace = document.getElementById('fieldPlace');
-    const fieldSn    = document.getElementById('fieldSn');
-    const fieldDate  = document.getElementById('fieldDate');
+    const fieldSn = document.getElementById('fieldSn');
+    const fieldDate = document.getElementById('fieldDate');
+
+    // VERSION CHECK
+    function checkVersion() {
+        const savedVersion = localStorage.getItem(VERSION_KEY);
+        if (savedVersion !== CURRENT_VERSION) {
+            localStorage.clear();
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+            console.log('✅ Кеш очищен - версия:', CURRENT_VERSION);
+        }
+    }
+
+    // CLEAR CACHE MANUALLY
+    function clearCache() {
+        if (confirm('Очистить весь кеш приложения?\n\nБудут удалены:\n• Сохранённые данные\n• История входов\n\nПотребуется повторный вход.')) {
+            localStorage.clear();
+            sessionStorage.clear();
+            showToast('🧹', 'Кеш полностью очищен', 'success');
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        }
+    }
 
     // AUTH
     function checkAuth() {
@@ -794,7 +786,7 @@
         if (pass === PASSWORD) {
             localStorage.setItem(AUTH_KEY, 'true');
             showMainApp();
-            showToast('✓', 'Успешный вход в систему', 'success');
+            showToast('✓', 'Добро пожаловать!', 'success');
         } else {
             passwordInput.classList.add('error');
             loginError.classList.add('show');
@@ -821,23 +813,31 @@
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    // AUTO CACHE CLEANUP
+    // DATABASE
+    function loadDB() {
+        const raw = localStorage.getItem(DB_KEY);
+        db = raw ? JSON.parse(raw) : [];
+        cleanupOldCache();
+    }
+
+    function saveDB() {
+        localStorage.setItem(DB_KEY, JSON.stringify(db));
+    }
+
     function cleanupOldCache() {
-        const MAX_DB_SIZE = 500; // максимум карточек
-        const MAX_AGE_DAYS = 365; // максимум дней хранения выполненных
+        const MAX_DB_SIZE = 500;
+        const MAX_AGE_DAYS = 365;
         
         if (db.length > MAX_DB_SIZE) {
-            // Удаляем самые старые выполненные карточки
             const doneItems = db.filter(x => x.done).sort((a,b) => a.ts - b.ts);
             const toRemove = doneItems.slice(0, db.length - MAX_DB_SIZE);
             db = db.filter(x => !toRemove.includes(x));
             
             if (toRemove.length > 0) {
-                showToast('🧹', `Очищено ${toRemove.length} старых записей`, 'success');
+                showToast('🧹', `Автоочистка: удалено ${toRemove.length} записей`, 'success');
             }
         }
         
-        // Удаляем очень старые выполненные задачи
         const now = Date.now();
         const maxAge = MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
         const initialLength = db.length;
@@ -846,26 +846,16 @@
             return (now - x.ts) < maxAge;
         });
         
-        const removed = initialLength - db.length;
-        if (removed > 0) {
+        if (initialLength !== db.length) {
             saveDB();
         }
     }
 
-    // DATABASE
-    function loadDB() {
-        const raw = localStorage.getItem(DB_KEY);
-        db = raw ? JSON.parse(raw) : [];
-        cleanupOldCache(); // Автоочистка при загрузке
-    }
-
-    function saveDB() {
-        localStorage.setItem(DB_KEY, JSON.stringify(db));
-    }
-
+    // CSV IMPORT
     document.getElementById('file').onchange = (e) => {
         const file = e.target.files[0];
         if(!file) return;
+        
         Papa.parse(file, {
             complete: (res) => {
                 db = res.data.slice(1).map(r => ({
@@ -877,10 +867,11 @@
                     ts: parseDate(r[11]),
                     done: false
                 })).filter(x => x.dateStr);
+                
                 db.sort((a,b) => a.ts - b.ts);
                 saveDB();
                 render();
-                showToast('📥', 'CSV-файл импортирован', 'success');
+                showToast('📥', `Импортировано ${db.length} записей`, 'success');
             }
         });
     };
@@ -895,6 +886,7 @@
         ).getTime();
     }
 
+    // TABS
     function setTab(t, el) {
         filter = t;
         document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
@@ -902,28 +894,16 @@
         render();
     }
 
-    function openModalNew() {
-        editIndex = -1;
-        modalTitleEl.textContent = 'Новая карточка';
-        const nextId = db.length ? (Math.max(...db.map(x => parseInt(x.id) || 0)) + 1) : 1;
-        fieldId.value    = nextId;
-        fieldName.value  = '';
-        fieldPlace.value = '';
-        fieldSn.value    = '';
-        fieldDate.value  = '';
-        backdrop.style.display = 'flex';
-        fieldName.focus();
-    }
-
+    // MODAL
     function openModalEdit(idx) {
         editIndex = idx;
         const it = db[idx];
         modalTitleEl.textContent = 'Редактирование';
-        fieldId.value    = it.id || '';
-        fieldName.value  = it.name || '';
+        fieldId.value = it.id || '';
+        fieldName.value = it.name || '';
         fieldPlace.value = it.place || '';
-        fieldSn.value    = it.sn || '';
-        fieldDate.value  = it.dateStr || '';
+        fieldSn.value = it.sn || '';
+        fieldDate.value = it.dateStr || '';
         backdrop.style.display = 'flex';
         fieldName.focus();
     }
@@ -934,42 +914,28 @@
     }
 
     function saveFromModal() {
-        const name  = fieldName.value.trim();
+        const name = fieldName.value.trim();
         if(!name) {
             alert('Название обязательно');
             fieldName.focus();
             return;
         }
-        const place = fieldPlace.value.trim();
-        const sn    = fieldSn.value.trim();
-        const dateS = fieldDate.value.trim();
-        let ts = 0;
-        if(dateS) ts = parseDate(dateS);
-
-        if(editIndex === -1) {
-            db.push({
-                id: fieldId.value || (db.length+1),
-                place, name, sn,
-                dateStr: dateS,
-                ts,
-                done: false
-            });
-            showToast('✓', 'Карточка создана', 'success');
-        } else {
-            const it = db[editIndex];
-            it.name    = name;
-            it.place   = place;
-            it.sn      = sn;
-            it.dateStr = dateS;
-            it.ts      = ts;
-            showToast('✓', 'Карточка обновлена', 'success');
-        }
+        
+        const it = db[editIndex];
+        it.name = name;
+        it.place = fieldPlace.value.trim();
+        it.sn = fieldSn.value.trim();
+        it.dateStr = fieldDate.value.trim();
+        it.ts = parseDate(it.dateStr);
+        
         db.sort((a,b) => a.ts - b.ts);
         saveDB();
         closeModal();
         render();
+        showToast('✓', 'Изменения сохранены', 'success');
     }
 
+    // RENDER
     function render() {
         const view = document.getElementById('listView');
         const query = document.getElementById('search').value.toLowerCase();
@@ -980,8 +946,10 @@
 
         db.forEach((item, idx) => {
             const diff = Math.ceil((item.ts - now) / 86400000);
-            if(item.done) s.done++;
-            else {
+            
+            if(item.done) {
+                s.done++;
+            } else {
                 s.total++;
                 if(diff < 0) s.exp++;
                 else if(diff <= 30) s.soon++;
@@ -1000,77 +968,92 @@
                 const state = diff < 0 ? 'urgent' : (diff <= 30 ? 'soon' : '');
                 const card = document.createElement('div');
                 card.className = `card ${state}`;
+                
+                const colorVar = diff < 0 ? 'danger' : (diff <= 30 ? 'warning' : 'success');
+                
                 card.innerHTML = `
                     <div class="card-top">
                         <span class="card-title">#${item.id} ${item.name || ''}</span>
-                        <span class="card-days"
-                              style="color:var(--${diff<0?'danger':diff<=30?'warning':'success'})">
-                              ${isNaN(diff)?'-':diff+' дн.'}
+                        <span class="card-days" style="color:var(--${colorVar})">
+                            ${isNaN(diff) ? '-' : diff + ' дн.'}
                         </span>
                     </div>
                     <div class="info-row">
                         <div class="info-label">Место установки</div>
-                        <div class="info-value">${item.place || ''}</div>
+                        <div class="info-value">${item.place || '—'}</div>
                     </div>
-                    <div style="display:flex; justify-content:space-between; width:100%; box-sizing:border-box;">
-                        <div style="max-width:50%; overflow:hidden;">
+                    <div style="display:flex; justify-content:space-between;">
+                        <div style="max-width:48%;">
                             <div class="info-label">S/N</div>
-                            <div class="info-value">${item.sn || ''}</div>
+                            <div class="info-value">${item.sn || '—'}</div>
                         </div>
-                        <div style="text-align:right; max-width:45%; overflow:hidden;">
+                        <div style="text-align:right; max-width:48%;">
                             <div class="info-label">ПЛАН</div>
-                            <div class="info-value">${item.dateStr || ''}</div>
+                            <div class="info-value">${item.dateStr || '—'}</div>
                         </div>
                     </div>
-                    ${!item.done ? `<button class="btn-done" data-type="done" data-idx="${idx}">ВЫПОЛНЕНО</button>` : ''}
+                    ${!item.done ? `<button class="btn-done" data-type="done" data-idx="${idx}">✓ ВЫПОЛНЕНО</button>` : ''}
                 `;
+                
                 card.addEventListener('click', (ev) => {
                     const t = ev.target;
                     if(t.dataset && t.dataset.type === 'done') {
                         ev.preventDefault();
                         ev.stopPropagation();
-                        mark(parseInt(t.dataset.idx,10));
+                        mark(parseInt(t.dataset.idx, 10));
                     } else if(!t.classList.contains('btn-done')) {
                         openModalEdit(idx);
                     }
                 });
+                
                 view.appendChild(card);
             }
         });
 
+        if(!view.children.length) {
+            view.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">📋</div>
+                    <div class="empty-text">Нет данных для отображения</div>
+                </div>
+            `;
+        }
+
         document.getElementById('countTotal').innerText = s.total;
-        document.getElementById('countExp').innerText   = s.exp;
-        document.getElementById('countSoon').innerText  = s.soon;
-        document.getElementById('countDone').innerText  = s.done;
+        document.getElementById('countExp').innerText = s.exp;
+        document.getElementById('countSoon').innerText = s.soon;
+        document.getElementById('countDone').innerText = s.done;
     }
 
     function mark(i) {
         db[i].done = true;
         saveDB();
         render();
-        showToast('✓', 'Прибор отмечен как выполненный', 'success');
+        showToast('✓', 'Отмечено как выполнено', 'success');
     }
 
     function resetDB() {
         const count = db.length;
-        if(confirm(`Удалить все ${count} записей из базы данных?\n\nЭто действие необратимо!`)) {
+        if(confirm(`Удалить все ${count} записей?\n\nЭто действие необратимо!`)) {
             db = [];
             saveDB();
             render();
-            showToast('🗑️', 'База данных полностью очищена', 'success');
+            showToast('🗑️', 'База данных очищена', 'success');
         }
     }
 
+    // EVENT LISTENERS
     document.getElementById('search').oninput = render;
     document.getElementById('btnReset').onclick = resetDB;
+    document.getElementById('btnClearCache').onclick = clearCache;
     document.getElementById('modalClose').onclick = closeModal;
     document.getElementById('btnCancel').onclick = closeModal;
     document.getElementById('btnSave').onclick = saveFromModal;
+    
     document.getElementById('modalBackdrop').addEventListener('click', (e) => {
         if(e.target === e.currentTarget) closeModal();
     });
 
-    // KEYBOARD
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && backdrop.style.display === 'flex') {
             closeModal();
@@ -1078,7 +1061,7 @@
     });
 
     // INIT
-    checkVersion(); // Очистка кеша если версия изменилась
+    checkVersion();
     checkAuth();
 </script>
 

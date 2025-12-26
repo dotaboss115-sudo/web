@@ -6,7 +6,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
                    user-scalable=no, viewport-fit=cover">
-    <title>SIBINTEK FINAL</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SIBINTEK FINAL v2.0</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
         :root {
@@ -740,10 +743,24 @@
     const PASSWORD = '65420';
     const AUTH_KEY = 'sib_auth_v4';
     const DB_KEY = 'sib_v4';
+    const VERSION_KEY = 'sib_version';
+    const CURRENT_VERSION = '2.0'; // Новая версия для сброса кеша
 
     let db = [];
     let filter = 'active';
     let editIndex = -1;
+
+    // FORCE CACHE CLEAR ON VERSION CHANGE
+    function checkVersion() {
+        const savedVersion = localStorage.getItem(VERSION_KEY);
+        if (savedVersion !== CURRENT_VERSION) {
+            // Очищаем весь старый кеш
+            localStorage.removeItem(DB_KEY);
+            localStorage.removeItem(AUTH_KEY);
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+            console.log('Кеш очищен - новая версия:', CURRENT_VERSION);
+        }
+    }
 
     const loginScreen = document.getElementById('loginScreen');
     const mainApp = document.getElementById('mainApp');
@@ -1061,6 +1078,7 @@
     });
 
     // INIT
+    checkVersion(); // Очистка кеша если версия изменилась
     checkAuth();
 </script>
 
